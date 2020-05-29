@@ -1,0 +1,26 @@
+server:
+  port: 5555
+spring:
+  application:
+    name: zuul-server
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/myxue?characterEncoding=utf-8
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+zuul:
+  prefix: /api
+  #转发服务
+  routes:
+    other:
+      path: /other-server/**
+      serviceId: other-server
+

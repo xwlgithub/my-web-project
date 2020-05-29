@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/my-xue/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/my-xue/eureka-server/eureka-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/my-web-project.iml" filepath="$PROJECT_DIR$/.idea/my-web-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my-xue/my-xue.iml" filepath="$PROJECT_DIR$/my-xue/my-xue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my-xue/zuul-server/zuul-server.iml" filepath="$PROJECT_DIR$/my-xue/zuul-server/zuul-server.iml" />
     </modules>
   </component>
 </project>
