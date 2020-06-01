@@ -12,6 +12,8 @@
         <server.version>1.4.7.RELEASE</server.version>
         <cloud.version>Edgware.SR6</cloud.version>
         <boot.version>2.0.8.RELEASE</boot.version>
+        <mybatis-plus.version>2.2.0</mybatis-plus.version>
+        <sql.version>5.1.47</sql.version>
     </properties>
     <modules>
         <module>eureka-server</module>
@@ -35,6 +37,16 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
                 <version>${boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${5.1.47}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
