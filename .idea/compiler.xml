@@ -7,12 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eureka-server" />
+        <module name="other-server" />
         <module name="zuul-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="eureka-server" target="1.5" />
       <module name="my-xue" target="1.5" />
+      <module name="other-server" target="1.5" />
       <module name="zuul-server" target="1.5" />
     </bytecodeTargetLevel>
   </component>
