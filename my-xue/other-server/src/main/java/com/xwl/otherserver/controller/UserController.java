@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/userList")
 @AllArgsConstructor
-@CrossOrigin
 public class UserController {
     private UserService userService;
     @GetMapping("findUserList")
