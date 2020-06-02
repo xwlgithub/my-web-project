@@ -2,27 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xwl.otherserver.mapper.UserInfoMapper">
-    <!--  private String name;
-    private String password;
-    private String callNum;
-    private String remark;
-    private String roleId;
-    private Date createTime;-->
     <resultMap id="userInfo" type="com.xwl.otherserver.domain.UserInfo">
-        <id column="id" property="id"></id>
-        <result property="password" column="password"></result>
-        <result property="callNum" column="call_num"></result>
-        <result property="remark" column="remark"></result>
-        <result property="roleId" column="role_id"></result>
-        <result property="createTime" column="create_time"></result>
+        <result   column="id" property="id"></result>
+        <result   column="name" property="name"></result>
+        <result  column="password"  property="password"></result>
+        <result  column="email_address" property="emailAddress"></result>
+        <result  column="remark" property="remark"></result>
+        <result  column="role_id" property="roleId"></result>
+        <result  column="create_time" property="createTime"></result>
     </resultMap>
     <select id="findLimit"  resultMap="userInfo">
 
-        select * from user_info  order  by create_time asc limit #{current},#{size}
+        select * from user_info where name like
+        concat('%',#{userName},'%')
+        order  by create_time desc limit #{current},#{size}
     </select>
-    <select id="findCounts"  resultType="Integer" >
+    <select id="findCounts"  resultType="Integer"  parameterType="String">
 
-        select count(1)from user_info
+        select count(1)from user_info where name like
+        concat('%',#{userName},'%')
     </select>
 
 </mapper>

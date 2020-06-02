@@ -6,5 +6,9 @@ import com.xwl.otherserver.domain.UserInfo;
 import com.xwl.otherserver.utils.MyPage;
 
 public interface UserService {
-    MyPage<UserInfo> fidUserList(Query query);
+    MyPage<UserInfo> fidUserList(Query query,String userName);
+
+    void saveUserByParams(UserInfo user);
+
+    Boolean deleteUserById(Long id);
 }
