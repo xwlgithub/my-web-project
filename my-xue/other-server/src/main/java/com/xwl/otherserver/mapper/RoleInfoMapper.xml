@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xwl.otherserver.mapper.RoleInfoMapper">
+    <resultMap id="roleInfo" type="com.xwl.otherserver.domain.RoleInfo">
+        <result   column="id" property="id"></result>
+        <result   column="role_name" property="roleName"></result>
+        <result  column="remark" property="remark"></result>
+        <result  column="permiss_id" property="permissId"></result>
+        <result  column="create_time" property="createTime"></result>
+    </resultMap>
+    <select id="findLimit"  resultMap="roleInfo">
+
+        select * from role_info where role_name like
+        concat('%',#{roleName},'%')
+        order  by create_time desc limit #{current},#{size}
+    </select>
+    <select id="findCounts"  resultType="Integer"  parameterType="String">
+
+        select count(1)from role_info where role_name like
+        concat('%',#{roleName},'%')
+    </select>
+
+</mapper>

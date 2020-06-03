@@ -22,6 +22,7 @@ import java.util.List;
  */
 @Service
 @AllArgsConstructor
+@SuppressWarnings("ALL")
 public class UserServiceImpl implements UserService {
     private UserInfoMapper userInfoMapper;
 

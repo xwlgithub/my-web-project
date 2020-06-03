@@ -8,7 +8,7 @@ import com.xwl.comserver.utils.R;
 import com.xwl.otherserver.domain.Query;
 import com.xwl.otherserver.domain.RoleInfo;
 import com.xwl.otherserver.domain.UserInfo;
-import com.xwl.otherserver.service.UserService;
+import com.xwl.otherserver.service.RoleService;
 import com.xwl.otherserver.utils.MyPage;
 import lombok.AllArgsConstructor;
 import org.springframework.util.StringUtils;
@@ -18,24 +18,24 @@ import java.util.List;
 
 /**
  * @Auther: 薛
- * @Date: 2020/5/29 15:59
+ * @Date: 2020/6/3 16:36
  * @Description:
  */
 @RestController
-@RequestMapping("/userList")
+@RequestMapping("/roleList")
 @AllArgsConstructor
-public class UserController {
-    private UserService userService;
-
+@SuppressWarnings("ALL")
+public class RoleController {
+    private RoleService roleService;
     /**
      * 分页查询
      *
      * @param query
      * @return
      */
-    @GetMapping("findUserList")
-    public R<MyPage<UserInfo>> findUserList(Query query, String userName) {
-        MyPage<UserInfo> infoMyPage = userService.fidUserList(query, userName);
+    @GetMapping("findRoleList")
+    public R<MyPage<RoleInfo>> findRoleList(Query query, String roleName) {
+        MyPage<RoleInfo> infoMyPage = roleService.findRoleList(query, roleName);
         return R.data(infoMyPage);
     }
 
@@ -45,15 +45,15 @@ public class UserController {
      * @param userJson
      * @return
      */
-    @PostMapping("saveUserByParams")
-    public R<Boolean> saveUserByParams(@RequestBody String userJson) {
-        Object userObject = JSONObject.parseObject(userJson).get("userJson");
-        UserInfo user = JSONObject.toJavaObject((JSON) userObject, UserInfo.class);
-        if (StringUtils.isEmpty(user)) {
+    @PostMapping("saveRoleByParams")
+    public R<Boolean> saveRoleByParams(@RequestBody String userJson) {
+        Object roleObject = JSONObject.parseObject(userJson).get("roleJson");
+        RoleInfo roleInfo = JSONObject.toJavaObject((JSON) roleObject, RoleInfo.class);
+        if (StringUtils.isEmpty(roleInfo)) {
             return R.errors(ExceptionEnum.MUST_PARAM_IS_NOT_NULL);
         }
         try {
-            userService.saveUserByParams(user);
+            roleService.saveRoleByParams(roleInfo);
         } catch (ApiException e) {
             return R.errors(e.getExceptionEnum());
         }
@@ -66,18 +66,32 @@ public class UserController {
      * @param id
      * @return
      */
-    @PostMapping("deleteUserById/{id}")
-    public R<Boolean> deleteUserById(@PathVariable("id") Long id) {
+    @PostMapping("deleteRoleById/{id}")
+    public R<Boolean> deleteRoleById(@PathVariable("id") Long id) {
         if (StringUtils.isEmpty(id)) {
             return R.errors(ExceptionEnum.MUST_PARAM_IS_NOT_NULL);
         }
         Boolean isSuccess = null;
         try {
-            isSuccess = userService.deleteUserById(id);
+            isSuccess = roleService.deleteRoleById(id);
         } catch (ApiException e) {
-           return R.errors(e.getExceptionEnum());
+            return R.errors(e.getExceptionEnum());
         }
         return R.data(isSuccess);
     }
 
+    /**
+     * 角色下拉
+     * @return
+     */
+    @GetMapping("findRoleLists")
+    public R<List<RoleInfo>> findRoleLists(){
+        List<RoleInfo> roleInfoList=null;
+        try {
+             roleInfoList=   roleService.findRoleLists();
+        } catch (ApiException e) {
+            return R.errors(ExceptionEnum.THROW_SERVER);
+        }
+        return R.data(roleInfoList);
+    }
 }

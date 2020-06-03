@@ -1,5 +1,6 @@
 package com.xwl.otherserver.domain;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,6 +31,9 @@ public class UserInfo {
     private String emailAddress;
     private String remark;
     private String roleId;
-    @JsonFormat(pattern = "yyyy-MM_dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime=new Date();
+
+    @TableField(exist = false)
+    private String roleName;
 }
