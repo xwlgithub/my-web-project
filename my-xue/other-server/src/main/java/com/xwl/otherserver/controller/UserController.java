@@ -2,6 +2,9 @@ package com.xwl.otherserver.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.xwl.comserver.exception.ApiException;
+import com.xwl.comserver.exception.ExceptionEnum;
+import com.xwl.comserver.utils.R;
 import com.xwl.otherserver.domain.Query;
 import com.xwl.otherserver.domain.UserInfo;
 import com.xwl.otherserver.service.UserService;
@@ -27,52 +30,54 @@ public class UserController {
 
     /**
      * 分页查询
+     *
      * @param query
      * @return
      */
     @GetMapping("findUserList")
-    public MyPage<UserInfo> findUserList(Query query,String userName){
-        MyPage<UserInfo> infoMyPage = userService.fidUserList(query,userName);
-        return   infoMyPage;
+    public R<MyPage<UserInfo>> findUserList(Query query, String userName) {
+        MyPage<UserInfo> infoMyPage = userService.fidUserList(query, userName);
+        return R.data(infoMyPage);
     }
 
     /**
      * 新增或修改
+     *
      * @param userJson
      * @return
      */
     @PostMapping("saveUserByParams")
-    public Map<String,Object> saveUserByParams(@RequestBody String userJson){
-        Map<String,Object> returnMap=new HashMap<String, Object>();
+    public R<Boolean> saveUserByParams(@RequestBody String userJson) {
         Object userObject = JSONObject.parseObject(userJson).get("userJson");
         UserInfo user = JSONObject.toJavaObject((JSON) userObject, UserInfo.class);
-        if (StringUtils.isEmpty(user)){
-            returnMap.put("error","部分字段为空清核实!");
-            return returnMap;
+        if (StringUtils.isEmpty(user)) {
+            return R.errors(ExceptionEnum.MUST_PARAM_IS_NOT_NULL);
         }
-        userService.saveUserByParams(user);
-        returnMap.put("success","操作成功!");
-        return returnMap;
+        try {
+            userService.saveUserByParams(user);
+        } catch (ApiException e) {
+            return R.errors(e.getExceptionEnum());
+        }
+        return R.data(true);
     }
 
     /**
      * 删除用户-ID
+     *
      * @param id
      * @return
      */
     @PostMapping("deleteUserById/{id}")
-    public Map<String,Object> deleteUserById(@PathVariable("id")Long id){
-        Map<String,Object> returnMap=new HashMap<String, Object>();
-        if (StringUtils.isEmpty(id)){
-            returnMap.put("error","缺少必要请求参数,请重试");
-            return returnMap;
+    public R<Boolean> deleteUserById(@PathVariable("id") Long id) {
+        if (StringUtils.isEmpty(id)) {
+            return R.errors(ExceptionEnum.MUST_PARAM_IS_NOT_NULL);
         }
-      Boolean isSuccess=  userService.deleteUserById(id);
-        if (isSuccess){
-            returnMap.put("success","删除成功!");
-            return returnMap;
+        Boolean isSuccess = null;
+        try {
+            isSuccess = userService.deleteUserById(id);
+        } catch (ApiException e) {
+           return R.errors(e.getExceptionEnum());
         }
-        returnMap.put("error","服务器异常");
-        return returnMap;
+        return R.data(isSuccess);
     }
 }
