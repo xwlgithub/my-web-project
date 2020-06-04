@@ -1,7 +1,7 @@
 package com.xwl.otherserver.service;
 
 
-import com.xwl.otherserver.domain.Query;
+import com.xwl.otherserver.vo.Query;
 import com.xwl.otherserver.domain.UserInfo;
 import com.xwl.otherserver.utils.MyPage;
 

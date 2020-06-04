@@ -1,10 +1,11 @@
 package com.xwl.otherserver.service.impl;
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.xwl.comserver.exception.ApiException;
 import com.xwl.comserver.exception.ExceptionEnum;
-import com.xwl.otherserver.domain.Query;
+import com.xwl.otherserver.domain.RoleInfo;
+import com.xwl.otherserver.vo.Query;
 import com.xwl.otherserver.domain.UserInfo;
+import com.xwl.otherserver.mapper.RoleInfoMapper;
 import com.xwl.otherserver.mapper.UserInfoMapper;
 import com.xwl.otherserver.service.UserService;
 import com.xwl.otherserver.utils.MyPage;
@@ -13,7 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @Auther: 薛
@@ -25,6 +29,7 @@ import java.util.List;
 @SuppressWarnings("ALL")
 public class UserServiceImpl implements UserService {
     private UserInfoMapper userInfoMapper;
+    private RoleInfoMapper roleInfoMapper;
 
     /**
      * 分页查询
@@ -35,9 +40,19 @@ public class UserServiceImpl implements UserService {
     public MyPage<UserInfo> fidUserList(Query query,String userName) {
         Integer current = (query.getCurrent() - 1) * query.getSize();
         List<UserInfo> userInfoList = userInfoMapper.findLimit(current, query.getSize(),userName);
+        List<RoleInfo> roleInfos=roleInfoMapper.findUserWithRoles();
+        Map<Long, String> roleNameMap = roleInfos.stream().collect(Collectors.toMap(roleInfo -> roleInfo.getId(), roleInfo -> roleInfo.getRoleName()));
+        userInfoList.stream().forEach(userInfo -> {
+            if (!StringUtils.isEmpty(userInfo.getRoleId())){
+                String s = roleNameMap.get(userInfo.getRoleId());
+                System.out.println(s+"角色名称~~~~~~~~");
+                userInfo.setRoleName(roleNameMap.get(userInfo.getRoleId()));
+            }
+        });
         Integer totals = userInfoMapper.findCounts(userName);
         return new MyPage<UserInfo>(query.getCurrent(), query.getSize(), userInfoList, totals);
     }
+
 
     /**
      * 新增或修改

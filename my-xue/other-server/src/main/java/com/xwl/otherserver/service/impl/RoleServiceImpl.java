@@ -2,7 +2,7 @@ package com.xwl.otherserver.service.impl;
 
 import com.xwl.comserver.exception.ApiException;
 import com.xwl.comserver.exception.ExceptionEnum;
-import com.xwl.otherserver.domain.Query;
+import com.xwl.otherserver.vo.Query;
 import com.xwl.otherserver.domain.RoleInfo;
 import com.xwl.otherserver.mapper.RoleInfoMapper;
 import com.xwl.otherserver.service.RoleService;

@@ -22,5 +22,6 @@ public class RoleInfo {
     private Long id;
     private String roleName;
     private String remark;
-    private String permissId;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long permissId;
 }

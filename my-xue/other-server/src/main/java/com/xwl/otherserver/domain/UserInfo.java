@@ -30,7 +30,8 @@ public class UserInfo {
     private String password;
     private String emailAddress;
     private String remark;
-    private String roleId;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long roleId;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime=new Date();
 

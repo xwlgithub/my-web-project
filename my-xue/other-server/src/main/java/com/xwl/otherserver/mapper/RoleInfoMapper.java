@@ -12,4 +12,7 @@ public interface RoleInfoMapper  extends BaseMapper<RoleInfo> {
     List<RoleInfo> findLimit(@Param("current") Integer current, @Param("size") Integer size, @Param("roleName") String roleName);
 
     Integer findCounts(@Param("roleName") String roleNam);
+
+    List<RoleInfo> findUserWithRoles();
+
 }

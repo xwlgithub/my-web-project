@@ -1,4 +1,4 @@
-package com.xwl.otherserver.domain;
+package com.xwl.otherserver.vo;
 
 import lombok.Data;
 
