@@ -45,7 +45,6 @@ public class UserServiceImpl implements UserService {
         userInfoList.stream().forEach(userInfo -> {
             if (!StringUtils.isEmpty(userInfo.getRoleId())){
                 String s = roleNameMap.get(userInfo.getRoleId());
-                System.out.println(s+"角色名称~~~~~~~~");
                 userInfo.setRoleName(roleNameMap.get(userInfo.getRoleId()));
             }
         });
