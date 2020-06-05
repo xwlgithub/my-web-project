@@ -40,9 +40,15 @@ public class PermissInfoServiceImpl implements PermissInfoService {
             List<MenuTableDto> finalMenuTableDtos = menuTableDtos;
             permissionInfos.stream().forEach(permissionInfo -> {
                 MenuTableDto menuTableDto = new MenuTableDto();
-                menuTableDto.setMenuId(permissionInfo.getId());
+                menuTableDto.setId(permissionInfo.getId());
                 menuTableDto.setMenuName(permissionInfo.getMenuName());
+                menuTableDto.setMenuCode(permissionInfo.getMenuCode());
+                menuTableDto.setMenuPath(permissionInfo.getMenuPath());
                 List<PermissionInfo> pnChildrenList = permissInfoMapper.findChildrenMenuList(permissionInfo.getId());
+                for (PermissionInfo info : pnChildrenList) {
+                    List<PermissionInfo> menuList = permissInfoMapper.findMenuList(info.getId());
+                    info.setPermissionInfoList(menuList);
+                }
                 menuTableDto.setPermissionInfoList(pnChildrenList);
                 finalMenuTableDtos.add(menuTableDto);
             });

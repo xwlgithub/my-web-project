@@ -17,4 +17,6 @@ public interface PermissInfoMapper  extends BaseMapper<PermissionInfo>{
     List<PermissionInfo> findMaxMenuList();
 
     List<PermissionInfo> findChildrenMenuList(@Param("id") Long id);
+
+    List<PermissionInfo> findMenuList(@Param("id")Long id);
 }

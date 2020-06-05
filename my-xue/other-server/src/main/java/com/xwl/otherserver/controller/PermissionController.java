@@ -2,11 +2,11 @@ package com.xwl.otherserver.controller;
 
 import com.xwl.comserver.exception.ApiException;
 import com.xwl.comserver.utils.R;
-import com.xwl.otherserver.domain.PermissionInfo;
 import com.xwl.otherserver.dto.MenuTableDto;
 import com.xwl.otherserver.service.PermissInfoService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

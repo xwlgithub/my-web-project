@@ -3,9 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xwl.otherserver.mapper.PermissInfoMapper">
     <select id="findMaxMenuList" resultType="com.xwl.otherserver.domain.PermissionInfo">
-        select * from permission_info where pid =0
+        select * from menu_info where parent_id =0
     </select>
     <select id="findChildrenMenuList" parameterType="Long" resultType="com.xwl.otherserver.domain.PermissionInfo">
-        select * from permission_info where pid=#{id}
+        select * from menu_info where parent_id=#{id}
+    </select>
+    <select id="findMenuList" parameterType="Long" resultType="com.xwl.otherserver.domain.PermissionInfo">
+        select * from menu_info where parent_id=#{id}
     </select>
 </mapper>

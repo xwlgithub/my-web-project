@@ -16,7 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MenuTableDto {
-    private Long menuId;
+    private Long id;
+    private String menuCode;
     private String menuName;
+    private String menuPath;
     private List<PermissionInfo> permissionInfoList;
 }
