@@ -2,6 +2,7 @@ package com.xwl.otherserver.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.xwl.otherserver.domain.RoleInfo;
+import com.xwl.otherserver.dto.RoleMenuDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,4 +16,5 @@ public interface RoleInfoMapper  extends BaseMapper<RoleInfo> {
 
     List<RoleInfo> findUserWithRoles();
 
+    List<RoleMenuDto> findRoleMenuListById(@Param("id") Long id);
 }

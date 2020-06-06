@@ -11,4 +11,32 @@
     <select id="findMenuList" parameterType="Long" resultType="com.xwl.otherserver.domain.PermissionInfo">
         select * from menu_info where parent_id=#{id}
     </select>
+    <select id="findTreeChildrens" parameterType="Long" resultType="com.xwl.otherserver.dto.MenuTreeChildren">
+        select id,menu_name as 'label' from menu_info where parent_id=#{id}
+    </select>
+    <select id="findMenuPoints" parameterType="Long" resultType="com.xwl.otherserver.dto.MenuChildrenPoint">
+        select id,menu_name as 'label' from menu_info where parent_id=#{id}
+    </select>
+    <select id="filterMaxIdrList" resultType="Long" >
+        SELECT id from menu_info WHERE menu_type  &lt;&gt; 0
+        and id in
+        <foreach collection="permissIds" index="index" item="menuId" open="(" close=")" separator=",">
+            #{menuId}
+        </foreach>
+    </select>
+    <select id="findRoleMenuList" parameterType="Long"  resultType="com.xwl.otherserver.domain.RoleMenu">
+        SELECT
+	menu_id,role_id
+FROM
+	role_menu
+WHERE
+	role_id = #{roleId}
+    </select>
+    <delete id="deletedByRoleId" >
+        delete  from  role_menu where menu_id in
+        <foreach collection="menuIds" open="(" close=")" separator="," item="menuId" index="index">
+            #{menuId}
+        </foreach>
+        and role_id =#{roleId}
+    </delete>
 </mapper>

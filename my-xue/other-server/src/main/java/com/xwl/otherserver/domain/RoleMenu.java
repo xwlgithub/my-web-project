@@ -7,23 +7,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 /**
  * @Auther: 薛
- * @Date: 2020/6/3 16:42
+ * @Date: 2020/6/6 13:13
  * @Description:
  */
-@TableName("role_info")
+@TableName("role_menu")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@SuppressWarnings("ALL")
-public class RoleInfo {
+public class RoleMenu {
     @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
-    private String roleName;
-    private String remark;
-    private LocalDateTime createTime;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long roleId;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long menuId;
 
+    public RoleMenu(Long roleId,Long menuId){
+        this.roleId=roleId;
+        this.menuId=menuId;
+    }
 }

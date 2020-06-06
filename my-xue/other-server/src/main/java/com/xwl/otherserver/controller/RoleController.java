@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.xwl.comserver.exception.ApiException;
 import com.xwl.comserver.exception.ExceptionEnum;
 import com.xwl.comserver.utils.R;
+import com.xwl.otherserver.dto.RoleMenuDto;
 import com.xwl.otherserver.vo.Query;
 import com.xwl.otherserver.domain.RoleInfo;
 import com.xwl.otherserver.service.RoleService;
@@ -26,6 +27,7 @@ import java.util.List;
 @SuppressWarnings("ALL")
 public class RoleController {
     private RoleService roleService;
+
     /**
      * 分页查询
      *
@@ -81,16 +83,56 @@ public class RoleController {
 
     /**
      * 角色下拉
+     *
      * @return
      */
     @GetMapping("findRoleLists")
-    public R<List<RoleInfo>> findRoleLists(){
-        List<RoleInfo> roleInfoList=null;
+    public R<List<RoleInfo>> findRoleLists() {
+        List<RoleInfo> roleInfoList = null;
         try {
-             roleInfoList=   roleService.findRoleLists();
+            roleInfoList = roleService.findRoleLists();
         } catch (ApiException e) {
             return R.errors(ExceptionEnum.THROW_SERVER);
         }
         return R.data(roleInfoList);
+    }
+
+    /**
+     * 根据角色id渲染权限树形菜单
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("findRoleMenuListById/{id}")
+    public R<List<RoleMenuDto>> findRoleMenuListById(@PathVariable("id") Long id) {
+        List<RoleMenuDto> menuDtoList = null;
+        try {
+            menuDtoList = roleService.findRoleMenuListById(id);
+        } catch (ApiException e) {
+            return R.errors(ExceptionEnum.THROW_SERVER);
+        }
+        return R.data(menuDtoList);
+    }
+
+    /**
+     * 角色分配权限
+     *
+     * @param permissIds
+     * @return
+     */
+    @PostMapping("saveRoleWithMenuByIds")
+    public R<Boolean> saveRoleWithMenuByIds(@RequestParam String permissIds,
+                                            @RequestParam Long roleId,
+                                            @RequestParam String mydeleteds) {
+        if (StringUtils.isEmpty(permissIds)&&StringUtils.isEmpty(mydeleteds)) {
+            return R.data(true);
+        }
+        Boolean isSucces = false;
+        try {
+            isSucces = roleService.saveRoleWithMenuByIds(permissIds, roleId,mydeleteds);
+        } catch (ApiException e) {
+            return R.errors(e.getExceptionEnum());
+        }
+        return R.data(isSucces);
     }
 }
