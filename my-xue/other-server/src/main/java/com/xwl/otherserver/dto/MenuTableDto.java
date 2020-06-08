@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @Auther: 薛
  * @Date: 2020/6/4 15:47
- * @Description:
+ * @Description:表格菜单Dto
  */
 @Data
 @AllArgsConstructor

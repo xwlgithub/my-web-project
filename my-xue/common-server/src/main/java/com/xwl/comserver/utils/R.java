@@ -28,6 +28,15 @@ public class R<T> {
         this.success=false;
         this.message=exceptionEnum.getMessage();
     }
+    /**
+     * 其它异常
+     * @param message
+     */
+    private R(String message){
+        this.status=400;
+        this.success=false;
+        this.message=message;
+    }
     // TODO 操作成功
 
     /**
@@ -61,5 +70,11 @@ public class R<T> {
      */
     public static <T> R<T> errors(ExceptionEnum exceptionEnum){
         return new R(exceptionEnum);
+    }
+    /**
+     * 失败返回格式
+     */
+    public static <T> R<T> fail(String message){
+        return new R(message);
     }
 }

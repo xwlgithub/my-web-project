@@ -6,7 +6,7 @@
         <result   column="id" property="id"></result>
         <result   column="name" property="name"></result>
         <result  column="password"  property="password"></result>
-        <result  column="email_address" property="emailAddress"></result>
+        <result  column="findCountsemail_address" property="emailAddress"></result>
         <result  column="remark" property="remark"></result>
         <result  column="role_id" property="roleId"></result>
         <result  column="create_time" property="createTime"></result>
@@ -19,8 +19,13 @@
     </select>
     <select id="findCounts"  resultType="Integer"  parameterType="String">
 
-        select count(1)from user_info where name like
+        select count(1) from user_info where name like
         concat('%',#{userName},'%')
     </select>
-
+    <select id="selectUserInfoByName" parameterType="String" resultType="Integer">
+         select count(1) from user_info where name=#{name}
+    </select>
+    <select id="selectUserByName" parameterType="String" resultType="com.xwl.otherserver.domain.UserInfo">
+        select * from user_info where name=#{name}
+    </select>
 </mapper>

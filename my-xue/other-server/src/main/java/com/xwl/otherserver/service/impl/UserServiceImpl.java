@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,17 +32,18 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 分页查询
+     *
      * @param query
      * @param userName
      * @return
      */
-    public MyPage<UserInfo> fidUserList(Query query,String userName) {
+    public MyPage<UserInfo> fidUserList(Query query, String userName) {
         Integer current = (query.getCurrent() - 1) * query.getSize();
-        List<UserInfo> userInfoList = userInfoMapper.findLimit(current, query.getSize(),userName);
-        List<RoleInfo> roleInfos=roleInfoMapper.findUserWithRoles();
+        List<UserInfo> userInfoList = userInfoMapper.findLimit(current, query.getSize(), userName);
+        List<RoleInfo> roleInfos = roleInfoMapper.findUserWithRoles();
         Map<Long, String> roleNameMap = roleInfos.stream().collect(Collectors.toMap(roleInfo -> roleInfo.getId(), roleInfo -> roleInfo.getRoleName()));
         userInfoList.stream().forEach(userInfo -> {
-            if (!StringUtils.isEmpty(userInfo.getRoleId())){
+            if (!StringUtils.isEmpty(userInfo.getRoleId())) {
                 String s = roleNameMap.get(userInfo.getRoleId());
                 userInfo.setRoleName(roleNameMap.get(userInfo.getRoleId()));
             }
@@ -55,34 +55,52 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 新增或修改
+     *
      * @param user
      */
     @Transactional
-    public void saveUserByParams(UserInfo user)throws ApiException {
-
-        try {
-            if (StringUtils.isEmpty(user.getId())) {
-                userInfoMapper.insert(user);
-            }else {
-                userInfoMapper.updateById(user);
+    public void saveUserByParams(UserInfo user) throws ApiException {
+        //id为空为注册账户
+        if (StringUtils.isEmpty(user.getId())) {
+            //校验当前用户是否已存在
+            Integer isHaveName = userInfoMapper.selectUserInfoByName(user.getName());
+            if (isHaveName > 0) {
+                throw new ApiException(ExceptionEnum.NAME_ISHAVA);
             }
+        }
+        try {
+            userInfoMapper.insert(user);
+            userInfoMapper.updateById(user);
         } catch (Exception e) {
-            throw  new ApiException(ExceptionEnum.THROW_SERVER);
+            throw new ApiException(ExceptionEnum.THROW_SERVER);
         }
     }
 
     /**
      * 删除
+     *
      * @param id
      * @return
      */
     @Transactional
-    public Boolean deleteUserById(Long id)throws ApiException {
+    public Boolean deleteUserById(Long id) throws ApiException {
         try {
             Integer integer = userInfoMapper.deleteById(id);
         } catch (Exception e) {
-           throw new ApiException(ExceptionEnum.THROW_SERVER);
+            throw new ApiException(ExceptionEnum.THROW_SERVER);
         }
         return true;
+    }
+
+    @Override
+    public UserInfo loginServer(UserInfo userInfo) {
+        UserInfo userInfo1 = userInfoMapper.selectUserByName(userInfo.getName());
+        if (StringUtils.isEmpty(userInfo1)){
+            throw new ApiException(ExceptionEnum.NAME_OR_PSD_ERROR);
+        }
+        if (!userInfo.getPassword().equals(userInfo1.getPassword())){
+            throw new ApiException(ExceptionEnum.NAME_OR_PSD_ERROR);
+        }
+        return userInfo1;
     }
 }

@@ -11,4 +11,8 @@ import java.util.List;
 public interface UserInfoMapper extends BaseMapper<UserInfo> {
     List<UserInfo> findLimit(@Param("current") Integer current,@Param("size") Integer size,@Param("userName") String userName);
     Integer findCounts(@Param("userName") String userName);
+
+    Integer selectUserInfoByName(@Param("name") String name);
+
+    UserInfo selectUserByName(@Param("name")String name);
 }

@@ -11,4 +11,6 @@ public interface UserService {
     void saveUserByParams(UserInfo user);
 
     Boolean deleteUserById(Long id);
+
+    UserInfo loginServer(UserInfo userInfo);
 }
