@@ -17,9 +17,8 @@
     <select id="findMenuPoints" parameterType="Long" resultType="com.xwl.otherserver.dto.MenuChildrenPoint">
         select id,menu_name as 'label' from menu_info where parent_id=#{id}
     </select>
-    <select id="filterMaxIdrList" resultType="Long" >
-        SELECT id from menu_info WHERE menu_type  &lt;&gt; 0
-        and id in
+    <select id="filterMaxIdrList" resultType="com.xwl.otherserver.domain.PermissionInfo" >
+        SELECT * from menu_info WHERE  id in
         <foreach collection="permissIds" index="index" item="menuId" open="(" close=")" separator=",">
             #{menuId}
         </foreach>
@@ -39,4 +38,19 @@ WHERE
         </foreach>
         and role_id =#{roleId}
     </delete>
+    <select id="findMenuTypeByRoleId" parameterType="Long" resultType="com.xwl.otherserver.domain.RoleMenu">
+        select * from role_menu where role_id=#{roleId} and menu_type =0 and menu_pid &lt;&gt; 0
+    </select>
+    <select id="findMenuTypeByRoleIdTwo" parameterType="Long" resultType="com.xwl.otherserver.domain.RoleMenu">
+        select * from role_menu where role_id=#{roleId} and menu_type =0 and menu_pid =0
+    </select>
+    <select id="findRoleMenuByParentId" parameterType="Long" resultType="Integer">
+        select count(1) from role_menu where menu_pid=#{menuId} and menu_pid &lt;&gt; 0
+    </select>
+    <select id="findAll" resultType="com.xwl.otherserver.domain.PermissionInfo">
+        select *  from menu_info
+    </select>
+    <select id="findRoleMenuByParentIdFather" resultType="Integer" parameterType="Long">
+        select count(1) from role_menu where menu_pid=#{menuId}
+    </select>
 </mapper>

@@ -28,4 +28,9 @@
     <select id="selectUserByName" parameterType="String" resultType="com.xwl.otherserver.domain.UserInfo">
         select * from user_info where name=#{name}
     </select>
+    <select id="findRoleIdsByName" resultType="com.xwl.otherserver.domain.PermissionInfo" parameterType="String">
+SELECT *  from menu_info WHERE id in
+(SELECT menu_id from role_menu WHERE role_id =
+(select role_id  from user_info WHERE `name`=#{userName}))
+    </select>
 </mapper>

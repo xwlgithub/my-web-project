@@ -30,8 +30,17 @@ public interface PermissInfoMapper  extends BaseMapper<PermissionInfo>{
 
     List<MenuChildrenPoint> findMenuPoints(@Param("id")Long id);
 
-    List<Long> filterMaxIdrList(@Param("permissIds") List<String> permissIds);
+    List<PermissionInfo> filterMaxIdrList(@Param("permissIds") List<String> permissIds);
     List<RoleMenu> findRoleMenuList(@Param("roleId") Long roleId);
 
     void deletedByRoleId(@Param("menuIds") List<String> menuIds,@Param("roleId") Long roleId);
+
+    List<RoleMenu> findMenuTypeByRoleId(@Param("roleId")Long roleId);
+    List<RoleMenu> findMenuTypeByRoleIdTwo(@Param("roleId")Long roleId);
+
+    Integer findRoleMenuByParentId(@Param("menuId") Long menuId);
+
+    List<PermissionInfo> findAll();
+
+    Integer findRoleMenuByParentIdFather(@Param("menuId")Long menuId);
 }

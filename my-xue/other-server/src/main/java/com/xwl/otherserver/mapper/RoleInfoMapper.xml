@@ -29,7 +29,7 @@
     </select>
     <select id="findRoleMenuListById" parameterType="Long" resultType="com.xwl.otherserver.dto.RoleMenuDto">
         SELECT id,menu_name as 'label'  FROM menu_info WHERE  id in
-        (select menu_id from role_menu where role_id =#{id})
+        (select menu_id from role_menu where role_id =#{id} and menu_type &lt;&gt; 0)
     </select>
 
 </mapper>

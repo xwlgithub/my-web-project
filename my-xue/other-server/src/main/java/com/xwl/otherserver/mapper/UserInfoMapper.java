@@ -1,6 +1,7 @@
 package com.xwl.otherserver.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.xwl.otherserver.domain.PermissionInfo;
 import com.xwl.otherserver.domain.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -15,4 +16,6 @@ public interface UserInfoMapper extends BaseMapper<UserInfo> {
     Integer selectUserInfoByName(@Param("name") String name);
 
     UserInfo selectUserByName(@Param("name")String name);
+
+    List<PermissionInfo> findRoleIdsByName(@Param("userName") String userName);
 }

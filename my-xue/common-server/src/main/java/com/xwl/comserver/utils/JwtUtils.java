@@ -3,11 +3,8 @@ package com.xwl.comserver.utils;
 import com.xwl.comserver.exception.ApiException;
 import com.xwl.comserver.exception.ExceptionEnum;
 import io.jsonwebtoken.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import java.util.Date;
 
@@ -17,7 +14,6 @@ import java.util.Date;
  * @Description:JWT-token认证签发与认证工具类
  */
 @Component
-@NoArgsConstructor
 public class JwtUtils {
     private static final String SIGN_NAME="xuewenliang";
     private static long mill=60000L;
@@ -63,14 +59,4 @@ public class JwtUtils {
         return claims;
     }
 
-    public static void main(String[] args) {
-        String ss="eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJ4d2wiLCJzdWIiOiIyNTMwMTY0NjRAcXEuY29tIiwiaWF0IjoxNTkxNjA5OTcyLCJleHAiOjE1OTE2MTAwMzJ9.IFvI06rel5_D3ZLOZpmLqZjD_1va1bERcf37ZyeX3oU";
-        Claims claims = null;
-        try {
-            claims = parseClaimsByToken(ss);
-        } catch (ApiException e) {
-            System.out.println(e.getExceptionEnum().toString());
-        }
-        System.out.println(claims);
-    }
 }

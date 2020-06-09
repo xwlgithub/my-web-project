@@ -2,6 +2,7 @@ package com.xwl.otherserver.service.impl;
 
 import com.xwl.comserver.exception.ApiException;
 import com.xwl.comserver.exception.ExceptionEnum;
+import com.xwl.otherserver.domain.PermissionInfo;
 import com.xwl.otherserver.domain.RoleMenu;
 import com.xwl.otherserver.dto.RoleMenuDto;
 import com.xwl.otherserver.mapper.PermissInfoMapper;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -77,24 +79,49 @@ public class RoleServiceImpl implements RoleService {
     @Override
     @Transactional
     public Boolean saveRoleWithMenuByIds(String permissIds,Long roleId,String mydeleted) {
-        //首先清除上级菜单
+        //分配权限菜单列表
         List<String> list = Arrays.asList(permissIds.split(","));
         List<String> roleIds = Arrays.asList(mydeleted.split(","));
         try {
-            //先删除
             if (roleIds.size()!=0) {
+                //先删除按钮
                 permissInfoMapper.deletedByRoleId(roleIds,roleId);
             }
-            List<Long> menuIds=permissInfoMapper.filterMaxIdrList(list);
-            //查询当前角色已存储权限菜单 -过滤重复
-            List<RoleMenu> roleMenuList =permissInfoMapper.findRoleMenuList(roleId);
-            Map<Long, Long> longMap = roleMenuList.stream().collect(Collectors.toMap(roleMenu -> roleMenu.getMenuId(), roleMenu -> roleMenu.getRoleId()));
-            if (menuIds.size()!=0){
-                menuIds.stream().forEach(id ->{
-                    if (StringUtils.isEmpty(longMap.get(id))) {
-                        roleMenuMapper.insert(new RoleMenu(roleId, id));
-                    }
-                });
+            if (list.size()!=0) {
+                List<PermissionInfo> menuIds = permissInfoMapper.filterMaxIdrList(list);
+                //查询当前角色已存储权限菜单 -过滤重复
+                List<RoleMenu> roleMenuList = permissInfoMapper.findRoleMenuList(roleId);
+                Map<Long, Long> longMap = roleMenuList.stream().collect(Collectors.toMap(roleMenu -> roleMenu.getMenuId(), roleMenu -> roleMenu.getRoleId()));
+                if (menuIds.size() != 0) {
+                    menuIds.stream().forEach(permissionInfo -> {
+                        if (StringUtils.isEmpty(longMap.get(permissionInfo.getId()))) {
+                            roleMenuMapper.insert(new RoleMenu(roleId, permissionInfo.getId(),
+                                    Integer.parseInt(permissionInfo.getMenuType()), permissionInfo.getParentId()));
+                        }
+                    });
+                }
+            }
+            //子级菜单删除
+            List<RoleMenu> menuTypeByRoleId =permissInfoMapper.findMenuTypeByRoleId(roleId);
+            Iterator<RoleMenu> iterator = menuTypeByRoleId.iterator();
+            while (iterator.hasNext()){
+                RoleMenu roleMenu = iterator.next();
+                Integer sums=permissInfoMapper.findRoleMenuByParentId(roleMenu.getMenuId());
+                if (sums>0){
+                    continue;
+                }
+                roleMenuMapper.deleteById(roleMenu.getId());
+            }
+            //父级菜单删除
+            List<RoleMenu> menuTypeFather =permissInfoMapper.findMenuTypeByRoleIdTwo(roleId);
+            Iterator<RoleMenu> iteratorFather = menuTypeFather.iterator();
+            while (iteratorFather.hasNext()){
+                RoleMenu roleMenu = iteratorFather.next();
+                Integer sums=permissInfoMapper.findRoleMenuByParentIdFather(roleMenu.getMenuId());
+                if (sums>0){
+                    continue;
+                }
+                roleMenuMapper.deleteById(roleMenu.getId());
             }
         } catch (Exception e) {
             e.printStackTrace();

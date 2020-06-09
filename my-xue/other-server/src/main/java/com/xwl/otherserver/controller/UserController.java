@@ -7,6 +7,7 @@ import com.xwl.comserver.exception.ExceptionEnum;
 import com.xwl.comserver.utils.JwtUtils;
 import com.xwl.comserver.utils.R;
 import com.xwl.otherserver.dto.MenuPermissDto;
+import com.xwl.otherserver.dto.ToMenuDto;
 import com.xwl.otherserver.vo.Query;
 import com.xwl.otherserver.domain.UserInfo;
 import com.xwl.otherserver.service.UserService;
@@ -115,5 +116,19 @@ public class UserController {
         }
         map.put("access_token", JwtUtils.createTokenByParams(use.getName(),use.getEmailAddress()));
         return R.data(map);
+    }
+
+    /**
+     * 身份令牌获取权限分类
+     * @param token
+     * @return
+     */
+    @GetMapping("findAuthByToken")
+    public R<ToMenuDto> findAuthByToken(@RequestParam String token){
+        if (StringUtils.isEmpty(token)){
+            return R.errors(ExceptionEnum.MUST_PARAM_IS_NOT_NULL);
+        }
+        ToMenuDto toMenuDto=userService.findAuthByToken(token);
+        return R.data(toMenuDto);
     }
 }
