@@ -23,4 +23,9 @@ zuul:
     other:
       path: /other-server/**
       serviceId: other-server
-
+#配置mybatis-plus打印sql语句于控制台
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #开启驼峰命名转换
+    map-underscore-to-camel-case: true

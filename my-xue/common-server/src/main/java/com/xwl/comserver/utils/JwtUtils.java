@@ -48,13 +48,13 @@ public class JwtUtils {
         } catch (ExpiredJwtException e) {
            throw new ApiException(ExceptionEnum.TOKEN_IS_ERROR);
         } catch (UnsupportedJwtException e) {
-            e.printStackTrace();
+            throw new ApiException(ExceptionEnum.THROW_SERVER);
         } catch (MalformedJwtException e) {
-            e.printStackTrace();
+            throw new ApiException(ExceptionEnum.THROW_SERVER);
         } catch (SignatureException e) {
-            e.printStackTrace();
+            throw new ApiException(ExceptionEnum.THROW_SERVER);
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            throw new ApiException(ExceptionEnum.THROW_SERVER);
         }
         return claims;
     }

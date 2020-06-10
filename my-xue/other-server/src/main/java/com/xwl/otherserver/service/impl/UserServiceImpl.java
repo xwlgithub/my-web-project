@@ -3,6 +3,7 @@ package com.xwl.otherserver.service.impl;
 import com.xwl.comserver.exception.ApiException;
 import com.xwl.comserver.exception.ExceptionEnum;
 import com.xwl.comserver.utils.JwtUtils;
+import com.xwl.comserver.utils.MdFivePsdUtils;
 import com.xwl.otherserver.domain.PermissionInfo;
 import com.xwl.otherserver.domain.RoleInfo;
 import com.xwl.otherserver.dto.ToMenuDto;
@@ -76,6 +77,8 @@ public class UserServiceImpl implements UserService {
             if (isHaveName > 0) {
                 throw new ApiException(ExceptionEnum.NAME_ISHAVA);
             }
+            //默认密码为123456
+            user.setPassword(MdFivePsdUtils.MD5("123456"));
             userInfoMapper.insert(user);
         } else {
             try {
