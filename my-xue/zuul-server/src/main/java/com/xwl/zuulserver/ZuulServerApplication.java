@@ -19,12 +19,18 @@ import org.springframework.web.filter.CorsFilter;
 @EnableZuulProxy
 //被注册中心发现
 @EnableEurekaClient
+//扫描Mapper
 @MapperScan("com.xwl.zuulserver.mapper")
 public class ZuulServerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ZuulServerApplication.class, args);
     }
+
+    /**
+     * 跨域解决
+     * @return
+     */
     @Bean
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <properties>
         <server.version>1.4.7.RELEASE</server.version>
+        <!--Edgware.SR6-->
         <cloud.version>Edgware.SR6</cloud.version>
         <boot.version>2.0.8.RELEASE</boot.version>
         <mybatis-plus.version>2.2.0</mybatis-plus.version>
@@ -20,6 +21,7 @@
         <module>zuul-server</module>
         <module>other-server</module>
         <module>common-server</module>
+        <module>show-server</module>
     </modules>
     <!--版本控制-->
     <dependencyManagement>
@@ -64,6 +66,16 @@
             <version>${cloud.version}</version>
             <type>pom</type>
             <scope>import</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.spring4all</groupId>
+            <artifactId>swagger-spring-boot-starter</artifactId>
+            <version>1.7.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+            <version>1.9.3</version>
         </dependency>
     </dependencies>
 </project>

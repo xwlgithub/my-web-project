@@ -12,6 +12,7 @@ import com.xwl.otherserver.vo.Query;
 import com.xwl.otherserver.domain.UserInfo;
 import com.xwl.otherserver.service.UserService;
 import com.xwl.otherserver.utils.MyPage;
+import io.swagger.annotations.*;
 import lombok.AllArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -31,6 +32,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/userList")
 @AllArgsConstructor
+@Api(value = "用户接口入口",tags = "用户接口入口")
 public class UserController {
     private UserService userService;
 
@@ -41,6 +43,12 @@ public class UserController {
      * @return
      */
     @GetMapping("findUserList")
+    @ApiOperation(value = "查询用户列表",position = 1)
+    @ApiImplicitParams({
+            @ApiImplicitParam(value = "当前页",name = "current",dataType = "Integer",required = true),
+            @ApiImplicitParam(value = "每页条数",name = "size",dataType = "Integer",required = true),
+            @ApiImplicitParam(value = "用户名",name = "userName",dataType = "String",required = false)
+    })
     public R<MyPage<UserInfo>> findUserList(Query query, String userName) {
         MyPage<UserInfo> infoMyPage = userService.fidUserList(query, userName);
         return R.data(infoMyPage);
@@ -53,6 +61,8 @@ public class UserController {
      * @return
      */
     @PostMapping("saveUserByParams")
+    @ApiOperation(value = "薪资或修改或注册",position = 2)
+    @ApiParam(value = "用户json字符串",name = "userJson",required = true)
     public R<Boolean> saveUserByParams(@RequestBody String userJson) {
         Object userObject = JSONObject.parseObject(userJson).get("userJson");
         UserInfo user = JSONObject.toJavaObject((JSON) userObject, UserInfo.class);
@@ -79,6 +89,8 @@ public class UserController {
      * @return
      */
     @PostMapping("deleteUserById/{id}")
+    @ApiOperation(value = "删除用户-ID",position = 3)
+    @ApiParam(value = "传入id",name = "id",required = true)
     public R<Boolean> deleteUserById(@PathVariable("id") Long id) {
         if (StringUtils.isEmpty(id)) {
             return R.errors(ExceptionEnum.MUST_PARAM_IS_NOT_NULL);

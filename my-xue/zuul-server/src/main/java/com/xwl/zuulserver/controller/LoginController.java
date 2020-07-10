@@ -6,9 +6,11 @@ import com.xwl.comserver.utils.JwtUtils;
 import com.xwl.comserver.utils.MdFivePsdUtils;
 import com.xwl.comserver.utils.R;
 import com.xwl.otherserver.domain.UserInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.validation.BindingResult;
@@ -30,7 +32,10 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("login")
+@Api(value = "登录接口",tags = "登录认证")
 public class LoginController {
+    @ApiOperation(value = "登录认证生成加密令牌",notes = "传入用户名&密码",position = 1)
+    @ApiParam(value = "传入用户实例对象",name = "userInfo",required = true)
     @PostMapping("loginServers")
     public R<Map<String, Object>> loginServers(@RequestBody @Valid UserInfo userInfo, BindingResult bindingResult) {
         Map<String, Object> map = new HashMap<>();

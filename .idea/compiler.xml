@@ -9,14 +9,16 @@
         <module name="common-server" />
         <module name="eureka-server" />
         <module name="other-server" />
+        <module name="show-server" />
         <module name="zuul-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="common-server" target="8" />
-      <module name="eureka-server" target="8" />
-      <module name="my-xue" target="8" />
+      <module name="common-server" target="1.5" />
+      <module name="eureka-server" target="1.5" />
+      <module name="my-xue" target="1.5" />
       <module name="other-server" target="8" />
+      <module name="show-server" target="8" />
       <module name="zuul-server" target="8" />
     </bytecodeTargetLevel>
   </component>
