@@ -1,6 +1,5 @@
 package com.xwl.zuulserver.provider;
 
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.RouteLocator;
 import org.springframework.context.annotation.Bean;
@@ -50,8 +49,8 @@ public class SwaggerZuulConfig implements SwaggerResourcesProvider {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("骠骑撸码大都督API接口文档")
-                .description("整合就完事了~")
-                .contact(new Contact("薛文良", "https://www.baidu.com", "未知~"))
+                .description("xuewenliang-gaoyating")
+                .contact(new Contact("薛文良-高亚婷", "https://www.baidu.com", "未知~"))
                 .version("1.0.0")
                 .termsOfServiceUrl("https://www.baidu.com")
                 .build();

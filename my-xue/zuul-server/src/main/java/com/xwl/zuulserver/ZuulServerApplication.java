@@ -26,7 +26,6 @@ public class ZuulServerApplication {
     public static void main(String[] args) {
         SpringApplication.run(ZuulServerApplication.class, args);
     }
-
     /**
      * 跨域解决
      * @return
