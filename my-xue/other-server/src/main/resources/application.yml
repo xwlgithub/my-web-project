@@ -1,5 +1,7 @@
+#端口
 server:
   port: 8111
+
 spring:
   application:
     name: other-server

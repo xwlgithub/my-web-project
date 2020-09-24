@@ -9,6 +9,7 @@ eureka:
     service-url:
       #注册中心地址
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+      #本身是注册中心不被发现与注册
     register-with-eureka: false
     fetch-registry: false
     #不开启自我保护机制

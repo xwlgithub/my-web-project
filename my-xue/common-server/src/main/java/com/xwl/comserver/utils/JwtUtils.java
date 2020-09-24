@@ -27,6 +27,7 @@ public class JwtUtils {
     public static String createTokenByParams(String name,String emailAdress){
         //当前时间-毫秒
         long now = System.currentTimeMillis();
+        //当前token过期时间截止~
         long exp=now+mill;
         JwtBuilder builder = Jwts.builder().setId(name)
                 .setSubject(emailAdress)
