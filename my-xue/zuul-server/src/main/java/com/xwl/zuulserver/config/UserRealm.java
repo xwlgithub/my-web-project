@@ -37,7 +37,7 @@ public class UserRealm extends AuthorizingRealm {
     @Autowired
     private RealmMapper realmMapper;
     /**
-     * 授权
+     * 授权 TODO 交给自定义业务进行授权
      * @param principalCollection
      * @return
      */

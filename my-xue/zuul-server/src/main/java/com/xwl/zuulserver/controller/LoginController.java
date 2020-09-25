@@ -15,11 +15,9 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -59,5 +57,21 @@ public class LoginController {
         }
         map.put("access_token", JwtUtils.createTokenByParams(userInfo.getName(), userInfo.getPassword()));
         return R.data(map);
+    }
+
+    /**
+     * 统一返回认证失败信息接口
+     * @param request
+     * @return
+     */
+    @RequestMapping("401")
+    public R responseStatus(HttpServletRequest request){
+        ExceptionEnum token_error = null;
+        try {
+            token_error = (ExceptionEnum)request.getAttribute("TOKEN_ERROR");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return R.errors(token_error);
     }
 }

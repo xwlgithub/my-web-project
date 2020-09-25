@@ -3,6 +3,7 @@ package com.xwl.zuulserver;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,7 @@ import org.springframework.web.filter.CorsFilter;
 @EnableEurekaClient
 //扫描Mapper
 @MapperScan("com.xwl.zuulserver.mapper")
+@ServletComponentScan
 public class ZuulServerApplication {
 
     public static void main(String[] args) {

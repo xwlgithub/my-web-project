@@ -55,7 +55,7 @@ public class JwtUtils {
         } catch (SignatureException e) {
             throw new ApiException(ExceptionEnum.THROW_SERVER);
         } catch (IllegalArgumentException e) {
-            throw new ApiException(ExceptionEnum.THROW_SERVER);
+            throw new ApiException(ExceptionEnum.AUTH_NO_AUTHENTION);
         }
         return claims;
     }
