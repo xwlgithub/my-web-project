@@ -51,7 +51,7 @@ public class LoginController {
         try {
             subject.login(token);
         } catch (AuthenticationException e) {
-            return R.errors(ExceptionEnum.THROW_SERVER);
+            return R.errors(ExceptionEnum.NAME_OR_PSD_ERROR);
         }catch (ApiException e){
             return R.errors(e.getExceptionEnum());
         }

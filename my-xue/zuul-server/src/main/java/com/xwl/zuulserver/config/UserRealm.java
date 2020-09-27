@@ -2,6 +2,7 @@ package com.xwl.zuulserver.config;
 
 import com.xwl.comserver.exception.ExceptionEnum;
 import com.xwl.otherserver.domain.UserInfo;
+import com.xwl.otherserver.mapper.UserInfoMapper;
 import com.xwl.zuulserver.mapper.RealmMapper;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -56,6 +57,7 @@ public class UserRealm extends AuthorizingRealm {
         //获取登录用户名
         SimpleAuthenticationInfo simpleAuthenticationInfo=null;
         String userName = (String)authenticationToken.getPrincipal();
+
         if (userName.equals("薛文良")){
             //校验用户名密码是否正确
              simpleAuthenticationInfo = new SimpleAuthenticationInfo(userName,PSD,USER_REALM_NAME);
