@@ -20,8 +20,8 @@
     <modules>
         <module>eureka-server</module>
         <module>zuul-server</module>
-        <module>other-server</module>
         <module>common-server</module>
+        <module>other-server</module>
         <module>show-server</module>
     </modules>
     <!--版本控制-->
@@ -71,7 +71,6 @@
             <artifactId>spring-cloud-dependencies</artifactId>
             <version>${cloud.version}</version>
             <type>pom</type>
-            <scope>import</scope>
         </dependency>
         <dependency>
             <groupId>com.spring4all</groupId>
@@ -89,6 +88,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
