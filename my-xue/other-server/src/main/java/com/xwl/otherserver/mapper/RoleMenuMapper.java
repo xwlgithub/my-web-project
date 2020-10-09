@@ -1,7 +1,7 @@
 package com.xwl.otherserver.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.xwl.otherserver.domain.RoleMenu;
+import com.xwl.comserver.domain.RoleMenu;
 import lombok.AllArgsConstructor;
 import org.apache.ibatis.annotations.Mapper;
 

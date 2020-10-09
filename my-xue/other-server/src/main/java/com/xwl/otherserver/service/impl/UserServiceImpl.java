@@ -1,15 +1,15 @@
 package com.xwl.otherserver.service.impl;
 
+import com.xwl.comserver.domain.PermissionInfo;
+import com.xwl.comserver.domain.RoleInfo;
+import com.xwl.comserver.domain.UserInfo;
 import com.xwl.comserver.exception.ApiException;
 import com.xwl.comserver.exception.ExceptionEnum;
 import com.xwl.comserver.utils.JwtUtils;
 import com.xwl.comserver.utils.MdFivePsdUtils;
-import com.xwl.otherserver.domain.PermissionInfo;
-import com.xwl.otherserver.domain.RoleInfo;
 import com.xwl.otherserver.dto.ToMenuDto;
 import com.xwl.otherserver.mapper.PermissInfoMapper;
 import com.xwl.otherserver.vo.Query;
-import com.xwl.otherserver.domain.UserInfo;
 import com.xwl.otherserver.mapper.RoleInfoMapper;
 import com.xwl.otherserver.mapper.UserInfoMapper;
 import com.xwl.otherserver.service.UserService;

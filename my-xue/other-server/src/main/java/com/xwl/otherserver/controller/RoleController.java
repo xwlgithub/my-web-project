@@ -2,12 +2,12 @@ package com.xwl.otherserver.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.xwl.comserver.domain.RoleInfo;
 import com.xwl.comserver.exception.ApiException;
 import com.xwl.comserver.exception.ExceptionEnum;
 import com.xwl.comserver.utils.R;
 import com.xwl.otherserver.dto.RoleMenuDto;
 import com.xwl.otherserver.vo.Query;
-import com.xwl.otherserver.domain.RoleInfo;
 import com.xwl.otherserver.service.RoleService;
 import com.xwl.otherserver.utils.MyPage;
 import lombok.AllArgsConstructor;

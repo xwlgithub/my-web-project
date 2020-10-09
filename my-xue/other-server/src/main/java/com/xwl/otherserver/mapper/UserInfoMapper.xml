@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xwl.otherserver.mapper.UserInfoMapper">
-    <resultMap id="userInfo" type="com.xwl.otherserver.domain.UserInfo">
+    <resultMap id="userInfo" type="com.xwl.comserver.domain.UserInfo">
         <result   column="id" property="id"></result>
         <result   column="name" property="name"></result>
         <result  column="password"  property="password"></result>
@@ -17,18 +17,18 @@
         concat('%',#{userName},'%')
         order  by create_time desc limit #{current},#{size}
     </select>
-    <select id="findCounts"  resultType="Integer"  parameterType="String">
+    <select id="findCounts"  resultType="integer"  parameterType="string">
 
         select count(1) from user_info where name like
         concat('%',#{userName},'%')
     </select>
-    <select id="selectUserInfoByName" parameterType="String" resultType="Integer">
+    <select id="selectUserInfoByName" parameterType="string" resultType="integer">
          select count(1) from user_info where name=#{name}
     </select>
-    <select id="selectUserByName" parameterType="String" resultType="com.xwl.otherserver.domain.UserInfo">
+    <select id="selectUserByName" parameterType="string" resultType="com.xwl.comserver.domain.UserInfo">
         select * from user_info where name=#{name}
     </select>
-    <select id="findRoleIdsByName" resultType="com.xwl.otherserver.domain.PermissionInfo" parameterType="String">
+    <select id="findRoleIdsByName" resultType="com.xwl.comserver.domain.PermissionInfo" parameterType="string">
 SELECT *  from menu_info WHERE id in
 (SELECT menu_id from role_menu WHERE role_id =
 (select role_id  from user_info WHERE `name`=#{userName}))

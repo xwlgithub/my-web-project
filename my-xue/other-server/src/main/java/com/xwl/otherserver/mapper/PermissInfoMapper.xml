@@ -2,28 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xwl.otherserver.mapper.PermissInfoMapper">
-    <select id="findMaxMenuList" resultType="com.xwl.otherserver.domain.PermissionInfo">
+    <select id="findMaxMenuList" resultType="com.xwl.comserver.domain.PermissionInfo">
         select * from menu_info where parent_id =0
     </select>
-    <select id="findChildrenMenuList" parameterType="Long" resultType="com.xwl.otherserver.domain.PermissionInfo">
+    <select id="findChildrenMenuList" parameterType="long" resultType="com.xwl.comserver.domain.PermissionInfo">
         select * from menu_info where parent_id=#{id}
     </select>
-    <select id="findMenuList" parameterType="Long" resultType="com.xwl.otherserver.domain.PermissionInfo">
+    <select id="findMenuList" parameterType="long" resultType="com.xwl.comserver.domain.PermissionInfo">
         select * from menu_info where parent_id=#{id}
     </select>
-    <select id="findTreeChildrens" parameterType="Long" resultType="com.xwl.otherserver.dto.MenuTreeChildren">
+    <select id="findTreeChildrens" parameterType="long" resultType="com.xwl.otherserver.dto.MenuTreeChildren">
         select id,menu_name as 'label' from menu_info where parent_id=#{id}
     </select>
-    <select id="findMenuPoints" parameterType="Long" resultType="com.xwl.otherserver.dto.MenuChildrenPoint">
+    <select id="findMenuPoints" parameterType="long" resultType="com.xwl.otherserver.dto.MenuChildrenPoint">
         select id,menu_name as 'label' from menu_info where parent_id=#{id}
     </select>
-    <select id="filterMaxIdrList" resultType="com.xwl.otherserver.domain.PermissionInfo" >
+    <select id="filterMaxIdrList" resultType="com.xwl.comserver.domain.PermissionInfo" >
         SELECT * from menu_info WHERE  id in
         <foreach collection="permissIds" index="index" item="menuId" open="(" close=")" separator=",">
             #{menuId}
         </foreach>
     </select>
-    <select id="findRoleMenuList" parameterType="Long"  resultType="com.xwl.otherserver.domain.RoleMenu">
+    <select id="findRoleMenuList" parameterType="long"  resultType="com.xwl.comserver.domain.RoleMenu">
         SELECT
 	menu_id,role_id
 FROM
@@ -38,19 +38,19 @@ WHERE
         </foreach>
         and role_id =#{roleId}
     </delete>
-    <select id="findMenuTypeByRoleId" parameterType="Long" resultType="com.xwl.otherserver.domain.RoleMenu">
+    <select id="findMenuTypeByRoleId" parameterType="long" resultType="com.xwl.comserver.domain.RoleMenu">
         select * from role_menu where role_id=#{roleId} and menu_type =0 and menu_pid &lt;&gt; 0
     </select>
-    <select id="findMenuTypeByRoleIdTwo" parameterType="Long" resultType="com.xwl.otherserver.domain.RoleMenu">
+    <select id="findMenuTypeByRoleIdTwo" parameterType="long" resultType="com.xwl.comserver.domain.RoleMenu">
         select * from role_menu where role_id=#{roleId} and menu_type =0 and menu_pid =0
     </select>
-    <select id="findRoleMenuByParentId" parameterType="Long" resultType="Integer">
+    <select id="findRoleMenuByParentId" parameterType="long" resultType="integer">
         select count(1) from role_menu where menu_pid=#{menuId} and menu_pid &lt;&gt; 0
     </select>
-    <select id="findAll" resultType="com.xwl.otherserver.domain.PermissionInfo">
+    <select id="findAll" resultType="com.xwl.comserver.domain.PermissionInfo">
         select *  from menu_info
     </select>
-    <select id="findRoleMenuByParentIdFather" resultType="Integer" parameterType="Long">
+    <select id="findRoleMenuByParentIdFather" resultType="integer" parameterType="long">
         select count(1) from role_menu where menu_pid=#{menuId}
     </select>
 </mapper>

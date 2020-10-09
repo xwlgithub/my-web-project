@@ -1,6 +1,6 @@
 package com.xwl.otherserver.dto;
 
-import com.xwl.otherserver.domain.PermissionInfo;
+import com.xwl.comserver.domain.PermissionInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

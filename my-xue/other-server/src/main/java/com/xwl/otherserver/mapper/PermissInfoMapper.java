@@ -1,8 +1,8 @@
 package com.xwl.otherserver.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.xwl.otherserver.domain.PermissionInfo;
-import com.xwl.otherserver.domain.RoleMenu;
+import com.xwl.comserver.domain.PermissionInfo;
+import com.xwl.comserver.domain.RoleMenu;
 import com.xwl.otherserver.dto.MenuChildrenPoint;
 import com.xwl.otherserver.dto.MenuTreeChildren;
 import org.apache.ibatis.annotations.MapKey;

@@ -1,8 +1,8 @@
 package com.xwl.otherserver.service.impl;
 
+import com.xwl.comserver.domain.PermissionInfo;
 import com.xwl.comserver.exception.ApiException;
 import com.xwl.comserver.exception.ExceptionEnum;
-import com.xwl.otherserver.domain.PermissionInfo;
 import com.xwl.otherserver.dto.MenuChildrenPoint;
 import com.xwl.otherserver.dto.MenuTableDto;
 import com.xwl.otherserver.dto.MenuTreeChildren;

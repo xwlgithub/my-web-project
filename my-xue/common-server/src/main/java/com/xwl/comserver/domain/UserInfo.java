@@ -1,20 +1,17 @@
-package com.xwl.otherserver.domain;
+package com.xwl.comserver.domain;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.StringSerializer;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import com.xwl.comserver.exception.ExceptionEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.validation.constraints.NotNull;
+
 import java.util.Date;
 
 /**

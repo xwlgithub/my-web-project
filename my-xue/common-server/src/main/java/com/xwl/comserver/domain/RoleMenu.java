@@ -1,4 +1,4 @@
-package com.xwl.otherserver.domain;
+package com.xwl.comserver.domain;
 
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

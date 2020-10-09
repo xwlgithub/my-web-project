@@ -1,6 +1,6 @@
 package com.xwl.zuulserver.mapper;
 
-import com.xwl.otherserver.domain.UserInfo;
+import com.xwl.comserver.domain.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

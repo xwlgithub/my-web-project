@@ -3,11 +3,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xwl.otherserver.mapper.RoleInfoMapper">
     <!--映射关系实体-->
-    <resultMap id="roleInfo" type="com.xwl.otherserver.domain.RoleInfo">
+    <resultMap id="roleInfo" type="com.xwl.comserver.domain.RoleInfo">
         <result   column="id" property="id"></result>
         <result   column="role_name" property="roleName"></result>
         <result  column="remark" property="remark"></result>
-        <result  column="permiss_id" property="permissId"></result>
         <result  column="create_time" property="createTime"></result>
     </resultMap>
     <!--分页查询-->
@@ -18,16 +17,16 @@
         order  by create_time desc limit #{current},#{size}
     </select>
     <!--分页查询总数-->
-    <select id="findCounts"  resultType="Integer"  parameterType="String">
+    <select id="findCounts"  resultType="integer"  parameterType="string">
 
         select count(1)from role_info where role_name like
         concat('%',#{roleName},'%')
     </select>
     <!--角色关联用户集合-->
-    <select id="findUserWithRoles" resultType="com.xwl.otherserver.domain.RoleInfo">
+    <select id="findUserWithRoles" resultType="com.xwl.comserver.domain.RoleInfo">
         select DISTINCT r.* from user_info AS u,role_info AS r where u.role_id=r.id
     </select>
-    <select id="findRoleMenuListById" parameterType="Long" resultType="com.xwl.otherserver.dto.RoleMenuDto">
+    <select id="findRoleMenuListById" parameterType="long" resultType="com.xwl.otherserver.dto.RoleMenuDto">
         SELECT id,menu_name as 'label'  FROM menu_info WHERE  id in
         (select menu_id from role_menu where role_id =#{id} and menu_type &lt;&gt; 0)
     </select>

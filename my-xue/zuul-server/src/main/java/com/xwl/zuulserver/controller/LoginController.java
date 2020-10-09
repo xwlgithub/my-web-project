@@ -1,11 +1,11 @@
 package com.xwl.zuulserver.controller;
 
+import com.xwl.comserver.domain.UserInfo;
 import com.xwl.comserver.exception.ApiException;
 import com.xwl.comserver.exception.ExceptionEnum;
 import com.xwl.comserver.utils.JwtUtils;
 import com.xwl.comserver.utils.MdFivePsdUtils;
 import com.xwl.comserver.utils.R;
-import com.xwl.otherserver.domain.UserInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

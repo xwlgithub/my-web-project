@@ -1,8 +1,8 @@
 package com.xwl.otherserver.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.xwl.otherserver.domain.PermissionInfo;
-import com.xwl.otherserver.domain.UserInfo;
+import com.xwl.comserver.domain.PermissionInfo;
+import com.xwl.comserver.domain.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

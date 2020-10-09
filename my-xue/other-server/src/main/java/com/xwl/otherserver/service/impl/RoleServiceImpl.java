@@ -1,14 +1,14 @@
 package com.xwl.otherserver.service.impl;
 
+import com.xwl.comserver.domain.PermissionInfo;
+import com.xwl.comserver.domain.RoleInfo;
+import com.xwl.comserver.domain.RoleMenu;
 import com.xwl.comserver.exception.ApiException;
 import com.xwl.comserver.exception.ExceptionEnum;
-import com.xwl.otherserver.domain.PermissionInfo;
-import com.xwl.otherserver.domain.RoleMenu;
 import com.xwl.otherserver.dto.RoleMenuDto;
 import com.xwl.otherserver.mapper.PermissInfoMapper;
 import com.xwl.otherserver.mapper.RoleMenuMapper;
 import com.xwl.otherserver.vo.Query;
-import com.xwl.otherserver.domain.RoleInfo;
 import com.xwl.otherserver.mapper.RoleInfoMapper;
 import com.xwl.otherserver.service.RoleService;
 import com.xwl.otherserver.utils.MyPage;

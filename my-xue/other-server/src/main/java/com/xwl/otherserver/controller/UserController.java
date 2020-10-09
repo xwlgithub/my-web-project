@@ -2,6 +2,7 @@ package com.xwl.otherserver.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.xwl.comserver.domain.UserInfo;
 import com.xwl.comserver.exception.ApiException;
 import com.xwl.comserver.exception.ExceptionEnum;
 import com.xwl.comserver.utils.JwtUtils;
@@ -9,7 +10,6 @@ import com.xwl.comserver.utils.R;
 import com.xwl.otherserver.dto.MenuPermissDto;
 import com.xwl.otherserver.dto.ToMenuDto;
 import com.xwl.otherserver.vo.Query;
-import com.xwl.otherserver.domain.UserInfo;
 import com.xwl.otherserver.service.UserService;
 import com.xwl.otherserver.utils.MyPage;
 import io.swagger.annotations.*;

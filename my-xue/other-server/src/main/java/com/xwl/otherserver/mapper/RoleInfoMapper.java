@@ -1,7 +1,7 @@
 package com.xwl.otherserver.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.xwl.otherserver.domain.RoleInfo;
+import com.xwl.comserver.domain.RoleInfo;
 import com.xwl.otherserver.dto.RoleMenuDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

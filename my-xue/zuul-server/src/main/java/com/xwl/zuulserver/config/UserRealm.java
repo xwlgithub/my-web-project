@@ -1,8 +1,7 @@
 package com.xwl.zuulserver.config;
 
+import com.xwl.comserver.domain.UserInfo;
 import com.xwl.comserver.exception.ExceptionEnum;
-import com.xwl.otherserver.domain.UserInfo;
-import com.xwl.otherserver.mapper.UserInfoMapper;
 import com.xwl.zuulserver.mapper.RealmMapper;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -12,6 +11,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xwl.zuulserver.mapper.RealmMapper">
-    <select id="selectUserByName" parameterType="String" resultType="com.xwl.otherserver.domain.UserInfo">
+    <select id="selectUserByName" parameterType="string" resultType="com.xwl.comserver.domain.UserInfo">
         select * from user_info where name=#{name}
     </select>
 </mapper>
