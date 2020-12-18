@@ -60,4 +60,9 @@ public class JwtUtils {
         return claims;
     }
 
+    public static void main(String[] args) {
+        String 张三 = JwtUtils.createTokenByParams("张三", "250");
+        System.out.println(张三);
+    }
+
 }
