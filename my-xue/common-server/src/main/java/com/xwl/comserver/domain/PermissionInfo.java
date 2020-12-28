@@ -1,12 +1,13 @@
 package com.xwl.comserver.domain;
 
-import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.List;
 
 /**
@@ -18,7 +19,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuppressWarnings("ALL")
-@TableName(value = "menu_info")
+@Entity
+@Table(name = "menu_info")
 public class PermissionInfo {
     @JsonSerialize(using = ToStringSerializer.class)
     private Long id;

@@ -1,12 +1,13 @@
 package com.xwl.comserver.domain;
 
-import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 /**
@@ -14,7 +15,8 @@ import java.time.LocalDateTime;
  * @Date: 2020/6/3 16:42
  * @Description:
  */
-@TableName("role_info")
+@Table(name = "role_info")
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

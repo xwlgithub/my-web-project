@@ -1,7 +1,5 @@
 package com.xwl.comserver.domain;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -10,6 +8,10 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import java.util.Date;
@@ -19,7 +21,8 @@ import java.util.Date;
  * @Date: 2020/5/29 16:00
  * @Description:
  */
-@TableName("user_info")
+@Table(name = "user_info")
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -46,12 +49,12 @@ public class UserInfo {
     @ApiModelProperty(value = "创建时间")
     private Date createTime=new Date();
 
-    @TableField(exist = false)
+    @Transient
     @ApiModelProperty(value = "角色名称")
     private String roleName;
     //密码重输
-    @TableField(exist = false)
+    @Transient
     private String againPsd;
-    @TableField(exist = false)
+    @Transient
     private Integer isReset;
 }

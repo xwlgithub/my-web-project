@@ -42,11 +42,11 @@
                 <artifactId>spring-boot-starter-parent</artifactId>
                 <version>${boot.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.baomidou</groupId>-->
+                <!--<artifactId>mybatis-plus-boot-starter</artifactId>-->
+                <!--<version>${mybatis-plus.version}</version>-->
+            <!--</dependency>-->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>

@@ -1,17 +1,20 @@
 package com.xwl.comserver.domain;
 
-import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * @Auther: 薛
  * @Date: 2020/6/6 13:13
  * @Description:
  */
-@TableName("role_menu")
+@Table(name = "role_menu")
+@Entity
 @Data
 @AllArgsConstructor
 public class RoleMenu {

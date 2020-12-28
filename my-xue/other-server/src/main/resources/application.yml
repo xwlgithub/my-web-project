@@ -8,7 +8,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: zhangsan456
+    password: root
     url: jdbc:mysql://localhost:3306/myxue?characterEncoding=utf-8
   jpa:
     show-sql: true
