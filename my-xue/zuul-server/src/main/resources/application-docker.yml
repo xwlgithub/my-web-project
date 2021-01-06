@@ -1,0 +1,52 @@
+server:
+  port: 5555
+spring:
+  application:
+    name: zuul-server
+    #mysql基础配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/myxue?characterEncoding=utf-8
+eureka:
+  instance:
+    hostname: localhost
+    #指定访问本机IP
+    prefer-ip-address: true
+  client:
+    #被注册中心eureka发现并注册
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eurekas:8761/eureka
+zuul:
+  prefix: /api
+  #转发服务
+  routes:
+    other:
+      path: /other-server/**
+      serviceId: other-server
+    show:
+      path: /show-server/**
+      serviceId: show-server
+#配置mybatis-plus打印sql语句于控制台
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #开启驼峰命名转换
+    map-underscore-to-camel-case: true
+  #错误响应配置时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000 #熔断响应时间
+  #ribbon超时配置 读取和等待时间都设置6秒
+ribbon:
+  #熔断读取时间
+  ReadTimeout: 60000
+  #连接等待时间
+  ConnectTimeout: 60000

@@ -1,16 +1,22 @@
+#端口
 server:
-  port: 8222
+  port: 8111
+
 spring:
   application:
-    name: show-server
+    name: other-server
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: zhangsan456
+    password: root
     url: jdbc:mysql://localhost:3306/myxue?characterEncoding=utf-8
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
   cloud:
     inetutils:
-      default-ip-address: 172.18.0.5
+      default-ip-address: 172.18.0.2
 eureka:
   instance:
     hostname: localhost

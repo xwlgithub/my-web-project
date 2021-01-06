@@ -14,9 +14,14 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  cloud:
+    inetutils:
+      default-ip-address: 172.18.0.2
 eureka:
   instance:
     hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.inetutils.default-ip-address}:${spring.application.name}:${server.port}
   client:
     fetch-registry: true
     register-with-eureka: true

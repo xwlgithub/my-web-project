@@ -6,14 +6,16 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: zhangsan456
+    password: root
     url: jdbc:mysql://localhost:3306/myxue?characterEncoding=utf-8
+   #注册上去的ip
   cloud:
     inetutils:
       default-ip-address: 172.18.0.5
 eureka:
   instance:
     hostname: localhost
+    #可以以ip形式访问
     prefer-ip-address: true
     instance-id: ${spring.cloud.inetutils.default-ip-address}:${spring.application.name}:${server.port}
   client:
