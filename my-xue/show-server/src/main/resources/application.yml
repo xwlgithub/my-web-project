@@ -10,7 +10,7 @@ spring:
     url: jdbc:mysql://localhost:3306/myxue?characterEncoding=utf-8
   cloud:
     inetutils:
-      default-ip-address: 172.18.0.5
+      default-ip-address: 172.18.0.2
 eureka:
   instance:
     hostname: localhost
@@ -20,7 +20,9 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://eurekas:8761/eureka
+      defaultZone: http://localhost:8761/eureka
+      # http://eurekas:8761/eureka
+      #defaultZone: http://localhost:8761/eureka
 #配置mybatis-plus打印sql语句于控制台
 mybatis-plus:
   configuration:
