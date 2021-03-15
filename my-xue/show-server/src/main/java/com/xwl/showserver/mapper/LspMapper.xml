@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xwl.showserver.mapper.LspMapper">
+   <select id="findLspList" resultType="com.xwl.showserver.entity.LspWx">
+       select
+       *
+       from
+       lsp_wx
+       <where>
+           <if test="name !=null and name !=''">
+               lsp_name like concat('%',#{name},'%')
+           </if>
+       </where>
+       limit
+       #{current},#{size}
+   </select>
+    <select id="findCountByParams" resultType="Integer">
+        select
+        count(1)
+        from
+        lsp_wx
+        <where>
+            <if test="name !=null and name !=''">
+                lsp_name like concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -4,7 +4,7 @@ package com.xwl.otherserver.service;
 import com.xwl.comserver.domain.UserInfo;
 import com.xwl.otherserver.dto.ToMenuDto;
 import com.xwl.otherserver.vo.Query;
-import com.xwl.otherserver.utils.MyPage;
+import com.xwl.comserver.utils.MyPage;
 
 public interface UserService {
     MyPage<UserInfo> fidUserList(Query query, String userName);

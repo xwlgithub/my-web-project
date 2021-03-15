@@ -1,4 +1,4 @@
-package com.xwl.otherserver.utils;
+package com.xwl.comserver.utils;
 
 import lombok.Data;
 

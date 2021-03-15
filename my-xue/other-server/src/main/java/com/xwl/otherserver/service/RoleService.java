@@ -3,8 +3,7 @@ package com.xwl.otherserver.service;
 import com.xwl.comserver.domain.RoleInfo;
 import com.xwl.otherserver.dto.RoleMenuDto;
 import com.xwl.otherserver.vo.Query;
-import com.xwl.otherserver.utils.MyPage;
-import org.springframework.util.StringUtils;
+import com.xwl.comserver.utils.MyPage;
 
 import java.util.List;
 

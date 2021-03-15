@@ -13,7 +13,7 @@ import com.xwl.otherserver.vo.Query;
 import com.xwl.otherserver.mapper.RoleInfoMapper;
 import com.xwl.otherserver.mapper.UserInfoMapper;
 import com.xwl.otherserver.service.UserService;
-import com.xwl.otherserver.utils.MyPage;
+import com.xwl.comserver.utils.MyPage;
 import io.jsonwebtoken.Claims;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,8 +23,6 @@ import org.springframework.util.StringUtils;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**

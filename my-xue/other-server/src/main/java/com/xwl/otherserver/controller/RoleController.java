@@ -9,7 +9,7 @@ import com.xwl.comserver.utils.R;
 import com.xwl.otherserver.dto.RoleMenuDto;
 import com.xwl.otherserver.vo.Query;
 import com.xwl.otherserver.service.RoleService;
-import com.xwl.otherserver.utils.MyPage;
+import com.xwl.comserver.utils.MyPage;
 import lombok.AllArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
