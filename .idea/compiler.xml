@@ -8,10 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="show-server" />
-        <module name="eureka-server" />
         <module name="other-server" />
         <module name="common-server" />
-        <module name="zuul-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">

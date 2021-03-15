@@ -83,10 +83,12 @@ public class RoleServiceImpl implements RoleService {
         List<String> list = Arrays.asList(permissIds.split(","));
         List<String> roleIds = Arrays.asList(mydeleted.split(","));
         try {
+            //要删除的Id集合
             if (roleIds.size()!=0) {
                 //先删除按钮
                 permissInfoMapper.deletedByRoleId(roleIds,roleId);
             }
+            //添加的集合
             if (list.size()!=0) {
                 List<PermissionInfo> menuIds = permissInfoMapper.filterMaxIdrList(list);
                 //查询当前角色已存储权限菜单 -过滤重复
@@ -101,28 +103,28 @@ public class RoleServiceImpl implements RoleService {
                     });
                 }
             }
-            //子级菜单删除
-            List<RoleMenu> menuTypeByRoleId =permissInfoMapper.findMenuTypeByRoleId(roleId);
-            Iterator<RoleMenu> iterator = menuTypeByRoleId.iterator();
-            while (iterator.hasNext()){
-                RoleMenu roleMenu = iterator.next();
-                Integer sums=permissInfoMapper.findRoleMenuByParentId(roleMenu.getMenuId());
-                if (sums>0){
-                    continue;
-                }
-                roleMenuMapper.deleteById(roleMenu.getId());
-            }
-            //父级菜单删除
-            List<RoleMenu> menuTypeFather =permissInfoMapper.findMenuTypeByRoleIdTwo(roleId);
-            Iterator<RoleMenu> iteratorFather = menuTypeFather.iterator();
-            while (iteratorFather.hasNext()){
-                RoleMenu roleMenu = iteratorFather.next();
-                Integer sums=permissInfoMapper.findRoleMenuByParentIdFather(roleMenu.getMenuId());
-                if (sums>0){
-                    continue;
-                }
-                roleMenuMapper.deleteById(roleMenu.getId());
-            }
+//            //子级菜单删除
+//            List<RoleMenu> menuTypeByRoleId =permissInfoMapper.findMenuTypeByRoleId(roleId);
+//            Iterator<RoleMenu> iterator = menuTypeByRoleId.iterator();
+//            while (iterator.hasNext()){
+//                RoleMenu roleMenu = iterator.next();
+//                Integer sums=permissInfoMapper.findRoleMenuByParentId(roleMenu.getMenuId());
+//                if (sums>0){
+//                    continue;
+//                }
+//                roleMenuMapper.deleteById(roleMenu.getId());
+//            }
+//            //父级菜单删除
+//            List<RoleMenu> menuTypeFather =permissInfoMapper.findMenuTypeByRoleIdTwo(roleId);
+//            Iterator<RoleMenu> iteratorFather = menuTypeFather.iterator();
+//            while (iteratorFather.hasNext()){
+//                RoleMenu roleMenu = iteratorFather.next();
+//                Integer sums=permissInfoMapper.findRoleMenuByParentIdFather(roleMenu.getMenuId());
+//                if (sums>0){
+//                    continue;
+//                }
+//                roleMenuMapper.deleteById(roleMenu.getId());
+//            }
         } catch (Exception e) {
             e.printStackTrace();
             //throw new ApiException(ExceptionEnum.THROW_SERVER);
