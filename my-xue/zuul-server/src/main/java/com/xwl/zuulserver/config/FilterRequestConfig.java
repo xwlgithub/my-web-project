@@ -37,10 +37,6 @@ public class FilterRequestConfig implements Filter {
         if (requestHttp.getRequestURI().equals("/login/loginServers")
                 || requestHttp.getRequestURI().equals("/api/other-server/userList/findAuthByToken")
                 || requestHttp.getRequestURI().equals("/login/401")
-                /* filterMap.put("/swagger-ui.html", "anon");
-                 filterMap.put("/swagger-resources/**", "anon");
-                 filterMap.put("/v2/**", "anon");
-                 filterMap.put("/webjars/**", "anon");*/
                 || requestHttp.getRequestURI().equals("/swagger-ui.html")
                 || requestHttp.getRequestURI().contains("/swagger-resources")
                 || requestHttp.getRequestURI().contains("/v2")
