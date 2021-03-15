@@ -33,13 +33,23 @@ public class FilterRequestConfig implements Filter {
             return;
         }
         //权限认证部分请求不通过鉴权(如:登录接口,获取token接口,异常返回接口等)
+        System.out.println("url"+requestHttp.getRequestURI());
         if (requestHttp.getRequestURI().equals("/login/loginServers")
                 || requestHttp.getRequestURI().equals("/api/other-server/userList/findAuthByToken")
                 || requestHttp.getRequestURI().equals("/login/401")
+                /* filterMap.put("/swagger-ui.html", "anon");
+                 filterMap.put("/swagger-resources/**", "anon");
+                 filterMap.put("/v2/**", "anon");
+                 filterMap.put("/webjars/**", "anon");*/
+                || requestHttp.getRequestURI().equals("/swagger-ui.html")
+                || requestHttp.getRequestURI().contains("/swagger-resources")
+                || requestHttp.getRequestURI().contains("/v2")
+                || requestHttp.getRequestURI().contains("/webjars")
+                || requestHttp.getRequestURI().contains("/doc.html")
                 ) {
-            chain.doFilter(request, response);
-            return;
-        }
+                chain.doFilter(request, response);
+                return;
+            }
         //获取请求token
         String authTocken = requestHttp.getHeader(TOCKEN);
         //如果为空即未鉴权||授权 返回异常信息
