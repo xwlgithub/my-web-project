@@ -62,8 +62,10 @@ public class SwaggerZuulConfig implements SwaggerResourcesProvider {
         List<SwaggerResource> resources = new ArrayList<>();
         resources.add(swaggerResource("网关服务","/v2/api-docs","1.0"));
         //循环 使用Lambda表达式简化代码
+        System.out.println("~~~"+routeLocator.toString());
         routeLocator.getRoutes().forEach(route ->{
             //动态获取
+            System.out.println("%%%%"+route.toString());
             resources.add(swaggerResource(route.getId(),route.getFullPath().replace("**", "v2/api-docs"), "1.0"));
         });
         return resources;
@@ -71,6 +73,7 @@ public class SwaggerZuulConfig implements SwaggerResourcesProvider {
 
     private SwaggerResource swaggerResource(String name,String location, String version) {
         SwaggerResource swaggerResource = new SwaggerResource();
+        System.out.println("名称"+name+"路径"+location+"版本"+version);
         String serverName="";
         if (name.equals("网关服务")){
             serverName="网关服务";
