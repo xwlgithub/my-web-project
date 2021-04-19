@@ -48,7 +48,7 @@ public class R<T> {
      * @param data
      * @return
      */
-    public static <T> R<T> data(T data) {
+    public static <T> R<T> data(T data)  {
         return getMsgAndCode(data, ExceptionEnum.SUCCESS.getMessage());
     }
 
