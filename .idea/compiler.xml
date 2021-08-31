@@ -7,20 +7,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common-server" />
+        <module name="show-server" />
         <module name="eureka-server" />
         <module name="other-server" />
-        <module name="show-server" />
+        <module name="common-server" />
         <module name="zuul-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="common-server" target="1.8" />
-      <module name="eureka-server" target="1.8" />
-      <module name="my-xue" target="1.8" />
-      <module name="other-server" target="1.8" />
-      <module name="show-server" target="1.8" />
-      <module name="zuul-server" target="1.8" />
+      <module name="common-server" target="1.8.0_151" />
+      <module name="eureka-server" target="1.8.0_151" />
+      <module name="my-xue" target="1.8.0_151" />
+      <module name="other-server" target="1.8.0_151" />
+      <module name="show-server" target="1.8.0_151" />
+      <module name="zuul-server" target="1.8.0_151" />
     </bytecodeTargetLevel>
   </component>
 </project>
