@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @date 2021/8/31 10:54
  * @Description show-server提供feign调用接口
  */
-@FeignClient(name = "show-server",fallback = ShowServerFeignFallback.class)
+@FeignClient(name = "show-server", fallback = ShowServerFeignFallback.class)
 public interface ShowServerFeign {
 
-
-    @PostMapping("/saveLsp")
-     Boolean saveLsp(@RequestBody LspWx lspWx);
+    /**
+     * 测试数据新增
+     * @param lspWx
+     * @return
+     */
+    @PostMapping("saveLsp")
+    Boolean saveLsp(@RequestBody LspWx lspWx);
 }

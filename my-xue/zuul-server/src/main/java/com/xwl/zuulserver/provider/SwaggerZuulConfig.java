@@ -50,7 +50,7 @@ public class SwaggerZuulConfig implements SwaggerResourcesProvider {
         return new ApiInfoBuilder()
                 .title("骠骑撸码大都督API接口文档")
                 .description("xuewenliang-gaoyating")
-                .contact(new Contact("薛文良-高亚婷", "https://www.baidu.com", "未知~"))
+                .contact(new Contact("薛文良", "https://www.baidu.com", "未知~"))
                 .version("1.0.0")
                 .termsOfServiceUrl("https://www.baidu.com")
                 .build();
@@ -78,9 +78,9 @@ public class SwaggerZuulConfig implements SwaggerResourcesProvider {
         if (name.equals("网关服务")){
             serverName="网关服务";
         }else if (name.equals("other")){
-            serverName="系统服务";
-        }else {
             serverName="业务服务";
+        }else {
+            serverName="系统服务";
         }
         swaggerResource.setName(serverName);
         swaggerResource.setLocation(location);

@@ -24,10 +24,10 @@ public class TestDataSourceServiceImpl  implements TestDataSourceService {
     @Transactional
     @Override
     public Boolean saveMesg() {
-        UserInfo userInfo = new UserInfo();
-        userInfoMapper.insert(userInfo);
         LspWx lspWx = new LspWx();
         showServerFeign.saveLsp(lspWx);
+        UserInfo userInfo = new UserInfo();
+        userInfoMapper.insert(userInfo);
         return Boolean.TRUE;
     }
 }

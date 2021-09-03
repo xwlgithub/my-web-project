@@ -8,11 +8,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 
 /**
+ * @author xuewenliang
  * @Auther: 薛
  * @Date: 2020/5/29 15:54
  * @Description:
  */
-@EnableFeignClients(basePackages = "com.xwl.otherserver")
+@EnableFeignClients(basePackages = "com.xwl")
 @EnableDiscoveryClient
 @SpringBootApplication
 public class OtherServerApplication {

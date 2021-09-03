@@ -6,6 +6,8 @@ import com.xwl.showserver.mapper.LspMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author xueWenLiang
@@ -14,12 +16,15 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @AllArgsConstructor
+@RestController
 public class ShowServerFeignServiceImpl implements ShowServerFeign {
     private LspMapper lspMapper;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
+    @PostMapping("saveLsp")
     public Boolean saveLsp(LspWx lspWx) {
-        return lspMapper.insert(lspWx) > 0 ? true : false;
+        Integer insert = lspMapper.insert(lspWx);
+        return insert > 0 ? true : false;
     }
 }
